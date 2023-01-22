@@ -1,0 +1,106 @@
+GET http://localhost:8080/approvers/1/orders
+Content-Type: application/json
+###
+GET http://localhost:8080/approvers/1
+Content-Type: application/json
+###
+GET http://localhost:8080/orders/1
+Content-Type: application/json
+###
+POST http://localhost:8080/orders/1/approverOrders
+Content-Type: text/uri-list
+
+http://localhost:8080/approvers/1
+http://localhost:8080/approvers/2
+###
+POST http://localhost:8080/approvers
+Content-Type: application/json
+
+{"name":"udom"}
+###
+POST http://localhost:8080/orders/4/approverOrders
+Content-Type: text/uri-list
+
+http://localhost:8080/approvers/1
+http://localhost:8080/approvers/2
+###
+POST http://localhost:8080/orders NOT WORK because order is not owner of approver
+Content-Type: application/json
+
+{"name":"order2","approvers":["http://localhost:8080/approvers/1"]}
+###
+POST http://localhost:8080/approvers/3/orders
+Content-Type: text/uri-list
+
+http://localhost:8080/orders/2
+###
+DELETE http://localhost:8080/approvers/3/orders/4
+Content-Type: application/json
+###
+POST http://localhost:8080/approvers/3/approverOrders
+Content-Type: text/uri-list
+
+http://localhost:8080/approverOrders/11
+###
+POST http://localhost:8080/orders
+Content-Type: application/json
+
+{"name":"order10"}
+###
+POST http://localhost:8080/approvers/2/orders
+Content-Type: text/uri-list
+
+http://localhost:8080/orders/3
+###
+DELETE http://localhost:8080/approvers/2/orders
+Content-Type: text/uri-list
+
+http://localhost:8080/orders/3
+###
+POST http://localhost:8080/approvers
+Content-Type: application/json
+
+{
+    "name":"approver_krit",
+    "orders": [
+        "http://localhost:8080/orders/1",
+        "http://localhost:8080/orders/2"
+    ]
+}
+###
+POST http://localhost:8080/approvers
+Content-Type: application/json
+
+{
+    "name":"approver_krit_2",
+    "orders": [
+        "http://localhost:8080/orders/1",
+        "http://localhost:8080/orders/2",
+        "http://localhost:8080/orders/3"
+    ]
+}
+###
+POST http://localhost:8080/approvers
+Content-Type: application/json
+
+{
+    "name":"approver_krit_3",
+    "orders": [
+        "http://localhost:8080/orders/1",
+        "http://localhost:8080/orders/2",
+        "http://localhost:8080/orders/3"
+    ]
+}
+###
+POST http://localhost:8080/approvers
+Content-Type: application/json
+
+{
+    "name":"approver_krit_4",
+    "orders": [
+        "http://localhost:8080/orders/1",
+        "http://localhost:8080/orders/2",
+        "http://localhost:8080/orders/3"
+    ]
+}
+###
